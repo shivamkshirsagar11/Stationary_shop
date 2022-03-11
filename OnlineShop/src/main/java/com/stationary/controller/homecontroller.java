@@ -6,13 +6,13 @@ import java.util.Date;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stationary.entities.Address;
 import com.stationary.entities.User;
-import com.stationary.jdbc.CommonInterfaceDao;
 import com.stationary.jdbc.UserDao;
 
 @Controller
@@ -45,8 +45,7 @@ public class homecontroller {
 		User u = new User(name,psw,mobile,email,new Date().toString(),a);
 		u.setAddress(a);
 		ApplicationContext app = new ClassPathXmlApplicationContext("spring.config.xml");
-		CommonInterfaceDao<User> SQL = (CommonInterfaceDao<User>) app.getBean("queryFetcherUser");
-//		CommonInterfaceDao<User> user = new UserDao();
+		UserDao SQL = (UserDao) app.getBean("queryFetcherUser");
 		SQL.insertObj(u);
 		return "login";
 	}
@@ -60,5 +59,20 @@ public class homecontroller {
 	public String login()
 	{
 		return "login";
+	}
+	@RequestMapping(path = "/afterlogin",method = RequestMethod.POST)
+	public String afterLogin(@RequestParam(name = "email")String email,
+			 @RequestParam(name = "psw")String psw,Model m) {
+		ApplicationContext app = new ClassPathXmlApplicationContext("spring.config.xml");
+		UserDao SQL = (UserDao) app.getBean("queryFetcherUser");
+		User user = SQL.getUser(email, psw);
+		System.out.println(email+" "+psw);
+		if (user == null) {
+			System.out.println("no user found!!");
+			m.addAttribute("error", "No user found!!");
+			return "login";
+		}
+		else System.out.println(user);
+		return "index";
 	}
 }
