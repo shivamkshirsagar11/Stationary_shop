@@ -11,14 +11,25 @@ import javax.persistence.Id;
 public class Pen {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String pId;
-	private String pName;
+	private int productTableId;
+	
+	private String id;
+	private String name;
 	private String des;
 	private String compName;
 	private int price;
 	private int stock;
 	private String color;
 	private byte[] image;
+
+	
+	public int getProductTableId() {
+		return productTableId;
+	}
+
+	public void setProductTableId(int productTableId) {
+		this.productTableId = productTableId;
+	}
 
 	public Pen() {
 		super();
@@ -28,8 +39,8 @@ public class Pen {
 	public Pen(String pId, String pName, String des, String compName, int price, int stock, String color,
 			byte[] image) {
 		super();
-		this.pId = pId;
-		this.pName = pName;
+		this.id = pId;
+		this.name = pName;
 		this.des = des;
 		this.compName = compName;
 		this.price = price;
@@ -40,24 +51,24 @@ public class Pen {
 
 	@Override
 	public String toString() {
-		return "Pen [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
+		return "Pen [pId=" + id + ", pName=" + name + ", des=" + des + ", compName=" + compName + ", price=" + price
 				+ ", stock=" + stock + ", color=" + color + ", image=" + Arrays.toString(image) + "]";
 	}
 
-	public String getpId() {
-		return pId;
+	public String getId() {
+		return id;
 	}
 
-	public void setpId(String pId) {
-		this.pId = pId;
+	public void setId(String pId) {
+		this.id = pId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getName() {
+		return name;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setName(String pName) {
+		this.name = pName;
 	}
 
 	public String getDes() {

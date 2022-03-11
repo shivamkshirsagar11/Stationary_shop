@@ -50,12 +50,30 @@ p:sessionFactory-ref="sfb"/>
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 
 <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager" p:sessionFactory-ref="sfb"/>
+<bean name="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+
+<property name="url" value="jdbc:mysql://localhost:3306/spring"/>
+
+<property name="username" value="root"/>
+
+<property name="password" value="2002"/>
+
+</bean>
+
+
+<bean name="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+
+<property name="dataSource" ref="ds"/>
+
+</bean>
    <!-- ++++++++++++++++ Here is Class that impliments Queries i created ++++++++++++++++++++--> 
-<bean class="com.stationary.jdbc.UserDao" name="queryFetcherUser" p:ht-ref="ht"/>  
-<bean class="com.stationary.jdbc.PenDao" name="queryFetcherPen" p:ht-ref="ht"/>  
-<bean class="com.stationary.jdbc.CalcDao" name="queryFetcherCalc" p:ht-ref="ht"/>  
-<bean class="com.stationary.jdbc.DeskDao" name="queryFetcherDesk" p:ht-ref="ht"/>  
-<bean class="com.stationary.jdbc.BookDao" name="queryFetcherBook" p:ht-ref="ht"/>
+<bean class="com.stationary.jdbc.UserDao" name="queryFetcherUser" p:jt-ref="jt" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.PenDao" name="queryFetcherPen" p:jt-ref="jt" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.CalcDao" name="queryFetcherCalc" p:jt-ref="jt" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.DeskDao" name="queryFetcherDesk" p:jt-ref="jt" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.BookDao" name="queryFetcherBook" p:jt-ref="jt" p:ht-ref="ht"/>
+
 </beans>
 

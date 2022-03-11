@@ -11,8 +11,10 @@ import javax.persistence.Id;
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String pId;
-	private String pName;
+	private int productTableId;
+	
+	private String id;
+	private String name;
 	private String des;
 	private String compName;
 	private int price;
@@ -20,6 +22,14 @@ public class Book {
 	private String author;
 	private int pages;
 	private byte[] image;
+
+	public int getProductTableId() {
+		return productTableId;
+	}
+
+	public void setProductTableId(int productTableId) {
+		this.productTableId = productTableId;
+	}
 
 	public Book() {
 		super();
@@ -29,8 +39,8 @@ public class Book {
 	public Book(String pId, String pName, String des, String compName, int price, int stock, String author, int pages,
 			byte[] image) {
 		super();
-		this.pId = pId;
-		this.pName = pName;
+		this.id = pId;
+		this.name = pName;
 		this.des = des;
 		this.compName = compName;
 		this.price = price;
@@ -40,20 +50,20 @@ public class Book {
 		this.image = image;
 	}
 
-	public String getpId() {
-		return pId;
+	public String getId() {
+		return id;
 	}
 
-	public void setpId(String pId) {
-		this.pId = pId;
+	public void setId(String pId) {
+		this.id = pId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getName() {
+		return name;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setName(String pName) {
+		this.name = pName;
 	}
 
 	public String getDes() {
@@ -114,7 +124,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
+		return "Book [pId=" + id + ", pName=" + name + ", des=" + des + ", compName=" + compName + ", price=" + price
 				+ ", stock=" + stock + ", author=" + author + ", pages=" + pages + ", image=" + Arrays.toString(image)
 				+ "]";
 	}

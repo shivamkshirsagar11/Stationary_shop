@@ -1,12 +1,21 @@
 package com.stationary.jdbc;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import com.stationary.Items.Book;
 
-public class BookDao implements CommonInterfaceDao<Book>{
+public class BookDao{
 	private HibernateTemplate ht;
-	
+	private JdbcTemplate jt;
+	public JdbcTemplate getJt() {
+		return jt;
+	}
+
+	public void setJt(JdbcTemplate jt) {
+		this.jt = jt;
+	}
+
 	public HibernateTemplate getHt() {
 		return ht;
 	}
@@ -15,25 +24,25 @@ public class BookDao implements CommonInterfaceDao<Book>{
 		this.ht = ht;
 	}
 
-	@Override
+	
 	public int insertObj(Book p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int deleteObj(Book p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int updateObj(Book p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public Book getOneObj(Book p) {
 		// TODO Auto-generated method stub
 		return null;

@@ -1,11 +1,21 @@
 package com.stationary.jdbc;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import com.stationary.Items.Pen;
 
-public class PenDao implements CommonInterfaceDao<Pen>{
+public class PenDao{
 	private HibernateTemplate ht;
+	private JdbcTemplate jt;
+	public JdbcTemplate getJt() {
+		return jt;
+	}
+
+	public void setJt(JdbcTemplate jt) {
+		this.jt = jt;
+	}
+
 	public HibernateTemplate getHt() {
 		return ht;
 	}
@@ -14,25 +24,25 @@ public class PenDao implements CommonInterfaceDao<Pen>{
 		this.ht = ht;
 	}
 
-	@Override
+	
 	public int insertObj(Pen p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int deleteObj(Pen p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int updateObj(Pen p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public Pen getOneObj(Pen p) {
 		// TODO Auto-generated method stub
 		return null;

@@ -12,8 +12,18 @@ import javax.persistence.OneToOne;
 public class Calc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String pId;
-	private String pName;
+	private int productTableId;
+	
+	public int getProductTableId() {
+		return productTableId;
+	}
+
+	public void setProductTableId(int productTableId) {
+		this.productTableId = productTableId;
+	}
+
+	private String id;
+	private String name;
 	private String des;
 	private String compName;
 	private int price;
@@ -26,11 +36,11 @@ public class Calc {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Calc(String pId, String pName, String des, String compName, int price, int stock, String type,
+	public Calc(String id, String name, String des, String compName, int price, int stock, String type,
 			byte[] image) {
 		super();
-		this.pId = pId;
-		this.pName = pName;
+		this.id = id;
+		this.name = name;
 		this.des = des;
 		this.compName = compName;
 		this.price = price;
@@ -41,24 +51,24 @@ public class Calc {
 
 	@Override
 	public String toString() {
-		return "Calc [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
+		return "Calc [pId=" + id + ", pName=" + name + ", des=" + des + ", compName=" + compName + ", price=" + price
 				+ ", stock=" + stock + ", type=" + type + ", image=" + Arrays.toString(image) + "]";
 	}
 
-	public String getpId() {
-		return pId;
+	public String getId() {
+		return id;
 	}
 
-	public void setpId(String pId) {
-		this.pId = pId;
+	public void setId(String pId) {
+		this.id = pId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getName() {
+		return name;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setName(String pName) {
+		this.name = pName;
 	}
 
 	public String getDes() {
