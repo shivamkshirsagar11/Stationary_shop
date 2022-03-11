@@ -49,7 +49,7 @@ private HibernateTemplate ht;
 		return 0;
 	}
 
-	public User getUser(String email,String psw) {
+	public User getUserByEmailAndPassword(String email,String psw) {
 		try {
 		String query = "select * from user where email=? and password = ?";
 		RowMapper<User> row  = new RowMappingUser();
@@ -60,6 +60,10 @@ private HibernateTemplate ht;
 			System.out.println(e.getLocalizedMessage());
 			return null;
 		}
+	}
+	
+	public User getUserById(int id) {
+		return ht.get(User.class, id);
 	}
 
 }

@@ -15,6 +15,40 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
+	<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+hr.new5 {
+  border: 7px solid brown;
+  border-radius: 5px;
+}
+</style>
 <title>INDEX</title>
 </head>
 <body>
@@ -35,7 +69,11 @@
 					<a class="nav-link active mx-4" aria-current="page" href="#">Home</a> <a
 						class="nav-link" href="#">Products</a> 
 						<a class="nav-link mx-4"
-						href="#">Shop</a> 
+						href="#">Shop</a>
+						<form method="post" action="profile">
+						<input type="hidden" name="userid" value="${user.getId() }">
+						<button type="submit" class="btn btn-warning"
+						>${user.getName()}'s Profile</button> </form>
 				</div>
 			</div>
 		</div>
@@ -86,30 +124,29 @@
 <!--Products  -->
 <div class="container" style="max-width:100%">
 
-
+<hr class="new5">
   <div class="row">
-  <h3>Available Books</h3>
+  <h3 style="color:brown;padding-left:680px;">Available Books</h3>
   <% for(int i = 0; i < 5; i+=1) { %>
-    <div class="card mt-5 ms-auto" style="width: 18rem;">
-  <img src='<c:url value="/resources/img/book.jpg" />' class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Product Name</h5>
-    <p class="card-text">Product details Product details Product details Product details Product details Product details Product details Product details Product details Product details </p>
-    <a href="#" class="btn btn-primary">Buy Now</a>
-  </div>
+    <div class="card">
+  <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+  <h1>Tailored Jeans</h1>
+  <p class="price">$19.99</p>
+  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+  <p><button>Add to Cart</button></p>
 </div>
     <% } %>
   </div>
+  <hr class="new5">
     <div class="row mt-4">
-  <h3>Available Pen</h3>
+  <h3 style="color:brown;padding-left:680px;">Available Pen</h3>
   <% for(int i = 0; i < 5; i+=1) { %>
-    <div class="card mt-5 ms-auto" style="width: 18rem;">
-  <img src='<c:url value="/resources/img/book.jpg" />' class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Product Name</h5>
-    <p class="card-text">Product details Product details Product details Product details Product details Product details Product details Product details Product details Product details </p>
-    <a href="#" class="btn btn-primary">Buy Now</a>
-  </div>
+    <div class="card">
+  <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+  <h1>Tailored Jeans</h1>
+  <p class="price">$19.99</p>
+  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+  <p><button>Add to Cart</button></p>
 </div>
     <% } %>
   </div>

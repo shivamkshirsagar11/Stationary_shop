@@ -1,6 +1,6 @@
 package com.stationary.controller;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 import org.springframework.context.ApplicationContext;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.stationary.entities.Address;
 import com.stationary.entities.User;
 import com.stationary.jdbc.UserDao;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class homecontroller {
@@ -62,10 +64,11 @@ public class homecontroller {
 	}
 	@RequestMapping(path = "/afterlogin",method = RequestMethod.POST)
 	public String afterLogin(@RequestParam(name = "email")String email,
-			 @RequestParam(name = "psw")String psw,Model m) {
+			 @RequestParam(name = "psw")String psw,Model m
+			 ) {
 		ApplicationContext app = new ClassPathXmlApplicationContext("spring.config.xml");
 		UserDao SQL = (UserDao) app.getBean("queryFetcherUser");
-		User user = SQL.getUser(email, psw);
+		User user = SQL.getUserByEmailAndPassword(email, psw);
 		System.out.println(email+" "+psw);
 		if (user == null) {
 			System.out.println("no user found!!");
@@ -73,6 +76,16 @@ public class homecontroller {
 			return "login";
 		}
 		else System.out.println(user);
+		m.addAttribute("user", user);
 		return "index";
+	}
+	@RequestMapping(path = "/profile",method=RequestMethod.POST)
+	public String profile(Model m,@RequestParam(name="userid")int id) {
+		ApplicationContext app = new ClassPathXmlApplicationContext("spring.config.xml");
+		UserDao SQL = (UserDao) app.getBean("queryFetcherUser");
+		User u = SQL.getUserById(id);
+		System.out.println(u);
+		m.addAttribute("user", u);
+		return "profile";
 	}
 }
