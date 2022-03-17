@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.stationary.entities.User;
 import com.stationary.rowmapper.models.RowMappingUser;
-
+@Repository
 public class UserDao{
-private HibernateTemplate ht;
+	@Autowired
+	private HibernateTemplate ht;
+	
+	@Autowired
 	private JdbcTemplate jt;
 	
 	public JdbcTemplate getJt() {
@@ -49,7 +53,7 @@ private HibernateTemplate ht;
 		return 0;
 	}
 
-	public User getUser(String email,String psw) {
+	public User getUserByEmailAndPassword(String email,String psw) {
 		try {
 		String query = "select * from user where email=? and password = ?";
 		RowMapper<User> row  = new RowMappingUser();
@@ -60,6 +64,10 @@ private HibernateTemplate ht;
 			System.out.println(e.getLocalizedMessage());
 			return null;
 		}
+	}
+	
+	public User getUserById(int id) {
+		return ht.get(User.class, id);
 	}
 
 }

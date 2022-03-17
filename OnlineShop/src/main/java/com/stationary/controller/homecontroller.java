@@ -1,8 +1,9 @@
 package com.stationary.controller;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,11 @@ import com.stationary.entities.Address;
 import com.stationary.entities.User;
 import com.stationary.jdbc.UserDao;
 
+
 @Controller
 public class homecontroller {
-	
+	@Autowired
+	UserDao SQL;
 	@RequestMapping("/")
 	public String home()
 	{
@@ -44,8 +47,6 @@ public class homecontroller {
 		Address a = new Address(hno,add1,add2,city,zip);
 		User u = new User(name,psw,mobile,email,new Date().toString(),a);
 		u.setAddress(a);
-		ApplicationContext app = new ClassPathXmlApplicationContext("spring.config.xml");
-		UserDao SQL = (UserDao) app.getBean("queryFetcherUser");
 		SQL.insertObj(u);
 		return "login";
 	}
@@ -62,10 +63,9 @@ public class homecontroller {
 	}
 	@RequestMapping(path = "/afterlogin",method = RequestMethod.POST)
 	public String afterLogin(@RequestParam(name = "email")String email,
-			 @RequestParam(name = "psw")String psw,Model m) {
-		ApplicationContext app = new ClassPathXmlApplicationContext("spring.config.xml");
-		UserDao SQL = (UserDao) app.getBean("queryFetcherUser");
-		User user = SQL.getUser(email, psw);
+			 @RequestParam(name = "psw")String psw,Model m
+			 ) {
+		User user = SQL.getUserByEmailAndPassword(email, psw);
 		System.out.println(email+" "+psw);
 		if (user == null) {
 			System.out.println("no user found!!");
@@ -73,6 +73,14 @@ public class homecontroller {
 			return "login";
 		}
 		else System.out.println(user);
+		m.addAttribute("user", user);
 		return "index";
+	}
+	@RequestMapping(path = "/profile",method=RequestMethod.POST)
+	public String profile(Model m,@RequestParam(name="userid")int id) {
+		User u = SQL.getUserById(id);
+		System.out.println(u);
+		m.addAttribute("user", u);
+		return "profile";
 	}
 }

@@ -1,51 +1,50 @@
 package com.stationary.jdbc;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.stationary.Items.Pen;
 
+@Repository
 public class PenDao{
-	private HibernateTemplate ht;
-	private JdbcTemplate jt;
-	public JdbcTemplate getJt() {
-		return jt;
-	}
-
-	public void setJt(JdbcTemplate jt) {
-		this.jt = jt;
-	}
-
-	public HibernateTemplate getHt() {
-		return ht;
-	}
-
-	public void setHt(HibernateTemplate ht) {
-		this.ht = ht;
-	}
-
 	
+	@Autowired
+	private HibernateTemplate ht;
+
+	@Transactional
 	public int insertObj(Pen p) {
 		// TODO Auto-generated method stub
-		return 0;
+		ht.save(p);
+		return 1;
 	}
 
-	
+
 	public int deleteObj(Pen p) {
 		// TODO Auto-generated method stub
+		this.ht.delete(p);
 		return 0;
 	}
 
-	
+
 	public int updateObj(Pen p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	
-	public Pen getOneObj(Pen p) {
+	public Pen getOneObj(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Pen pen = this.ht.get(Pen.class, id);
+		return pen;
+	}
+	
+	public List<Pen> getall()
+	{
+		return this.ht.loadAll(Pen.class);
 	}
 
 }
