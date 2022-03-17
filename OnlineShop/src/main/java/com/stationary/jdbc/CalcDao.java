@@ -1,38 +1,33 @@
 package com.stationary.jdbc;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.stationary.Items.Calc;
 
+@Repository
 public class CalcDao{
+
+	@Autowired
 	private HibernateTemplate ht;
-	private JdbcTemplate jt;
-	public JdbcTemplate getJt() {
-		return jt;
-	}
-
-	public void setJt(JdbcTemplate jt) {
-		this.jt = jt;
-	}
-
-	public HibernateTemplate getHt() {
-		return ht;
-	}
-
-	public void setHt(HibernateTemplate ht) {
-		this.ht = ht;
-	}
-
 	
+	
+	@Transactional
 	public int insertObj(Calc p) {
 		// TODO Auto-generated method stub
-		return 0;
+		ht.save(p);
+		return 1;
 	}
 
 	
 	public int deleteObj(Calc p) {
 		// TODO Auto-generated method stub
+		this.ht.delete(p);
 		return 0;
 	}
 
@@ -43,9 +38,14 @@ public class CalcDao{
 	}
 
 	
-	public Calc getOneObj(Calc p) {
+	public Calc getOneObj(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Calc c = ht.get(Calc.class, id);
+		return c;
 	}
-
+	
+	public List<Calc> getall()
+	{
+		return this.ht.loadAll(Calc.class);
+	}
 }

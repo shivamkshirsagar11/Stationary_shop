@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.stationary.entities.User;
 import com.stationary.rowmapper.models.RowMappingUser;
-
+@Repository
 public class UserDao{
-private HibernateTemplate ht;
+	@Autowired
+	private HibernateTemplate ht;
+	
+	@Autowired
 	private JdbcTemplate jt;
 	
 	public JdbcTemplate getJt() {

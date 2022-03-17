@@ -1,38 +1,33 @@
 package com.stationary.jdbc;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.stationary.Items.Book;
 
+
+@Repository
 public class BookDao{
-	private HibernateTemplate ht;
-	private JdbcTemplate jt;
-	public JdbcTemplate getJt() {
-		return jt;
-	}
-
-	public void setJt(JdbcTemplate jt) {
-		this.jt = jt;
-	}
-
-	public HibernateTemplate getHt() {
-		return ht;
-	}
-
-	public void setHt(HibernateTemplate ht) {
-		this.ht = ht;
-	}
-
 	
+	@Autowired
+	HibernateTemplate ht;
+	
+	@Transactional
 	public int insertObj(Book p) {
 		// TODO Auto-generated method stub
-		return 0;
+		this.ht.save(p);
+		return 1;
 	}
 
-	
+	@Transactional
 	public int deleteObj(Book p) {
 		// TODO Auto-generated method stub
+		this.ht.delete(p);
 		return 0;
 	}
 
@@ -43,9 +38,14 @@ public class BookDao{
 	}
 
 	
-	public Book getOneObj(Book p) {
+	public Book getOneObj(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Book b = ht.get(Book.class, id);
+		return b;
 	}
-
+	
+	public List<Book> getall()
+	{
+		return this.ht.loadAll(Book.class);
+	}
 }

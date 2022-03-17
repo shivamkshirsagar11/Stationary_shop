@@ -1,51 +1,52 @@
 package com.stationary.jdbc;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.stationary.Items.Desk;
 
+@Repository
 public class DeskDao{
-	private HibernateTemplate ht;
-	private JdbcTemplate jt;
-	public JdbcTemplate getJt() {
-		return jt;
-	}
-
-	public void setJt(JdbcTemplate jt) {
-		this.jt = jt;
-	}
-
-	public HibernateTemplate getHt() {
-		return ht;
-	}
-
-	public void setHt(HibernateTemplate ht) {
-		this.ht = ht;
-	}
-
 	
+	@Autowired
+	private HibernateTemplate ht;
+	
+	
+	@Transactional
 	public int insertObj(Desk p) {
 		// TODO Auto-generated method stub
-		return 0;
+		this.ht.save(p);
+		return 1;
 	}
 
 	
 	public int deleteObj(Desk p) {
 		// TODO Auto-generated method stub
+		this.ht.delete(p);
 		return 0;
 	}
 
 	
 	public int updateObj(Desk p) {
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
-
 	
-	public Desk getOneObj(Desk p) {
+	public List<Desk> getall()
+	{
+		return this.ht.loadAll(Desk.class);
+	}
+	
+	public Desk getOneObj(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Desk d = this.ht.get(Desk.class, id);
+		return d;
 	}
 
 }
