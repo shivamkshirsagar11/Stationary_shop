@@ -6,11 +6,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<!-- <script type = "text/javascript" >
+        function preventBack(){window.history.forward();}
+         setTimeout("preventBack()", 0);
+         window.onunload=function(){null};
+     </script> -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+	
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -55,7 +61,7 @@ hr.new5 {
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">JustorderUtil.com</a>
+			<a class="navbar-brand" href="#">JustorderIT.com</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
 				aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -73,7 +79,11 @@ hr.new5 {
 						<form method="post" action="profile">
 						<input type="hidden" name="userid" value="${user.getId() }">
 						<button type="submit" class="btn btn-warning"
-						>${user.getName()}'s Profile</button> </form>
+						>${user.getName()}'s Profile</button> </form> 
+						<input type="text" placeholder="Search.." name="search" style="margin-left:30px;" id="search"><input type="button" onclick="search(document.getElementById('search').value)" value="go" class="btn btn-success">
+						
+						<a href="login" class="btn btn-danger" style="margin-left:50px;">Logout</a>
+						
 				</div>
 			</div>
 		</div>
@@ -86,30 +96,39 @@ hr.new5 {
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src='<c:url value="/resources/img/book.jpg" />' height="600px" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Read Novels</h5>
+        <h5>Buy Novels</h5>
         <button class='btn btn-success'>Explore Books</button>
       </div>
     </div>
     <div class="carousel-item">
-      <img src='<c:url value="/resources/img/book.jpg" />' height="600px" class="d-block w-100" alt="...">
+      <img src='<c:url value="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-pens-1611249290.png?crop=1.00xw:1.00xh;0,0&resize=1200:*" />' height="600px" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Read Novels</h5>
+        <h5 style="color:black;">Buy Pens</h5>
         <button class='btn btn-success'>Explore Pens</button>
       </div>
     </div>
     <div class="carousel-item">
-      <img src='<c:url value="/resources/img/book.jpg" />'  height="600px" class="d-block w-100" alt="...">
+      <img src='<c:url value="https://media.wired.com/photos/5933eebea24b4b4903a3cb90/master/pass/vintage-calculators.jpg" />'  height="600px" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Read Novels</h5>
+        <h5 style="color:black;">Buy Calculator</h5>
+        <button class='btn btn-success'>Explore Calculator</button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src='<c:url value="https://specials-images.forbesimg.com/imageserve/616da475831a130c294d178c/Best-desks-on-Amazon--Roundhill-Furniture-Roskilde-Storage-Wood-Office-Desk-/960x0.jpg?fit=scale" />' height="600px" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Buy Desk</h5>
         <button class='btn btn-success'>Explore Desk</button>
       </div>
     </div>
   </div>
+  
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -189,5 +208,9 @@ hr.new5 {
 	
 </div>
 <!--End Products  -->
+<script>
+function search(string){
+	window.find(string);
+	}</script>
 </body>
 </html>

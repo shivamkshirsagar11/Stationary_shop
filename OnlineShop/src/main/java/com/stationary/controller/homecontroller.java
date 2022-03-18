@@ -109,7 +109,7 @@ public class homecontroller {
 	@RequestMapping(path = "/profile",method=RequestMethod.POST)
 	public String profile(Model m,@RequestParam(name="userid")int id) {
 		User u = SQL.getUserById(id);
-		System.out.println(u);
+		
 		m.addAttribute("user", u);
 		return "profile";
 	}

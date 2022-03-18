@@ -15,7 +15,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-white bg-white">
 		<div class="container-fluid">
-			<a class="navbar-brand" style="padding-left: 45%;padding-top: 50px;" href="#">JustorderUtil.com</a>
+			<a class="navbar-brand" style="padding-left: 45%;padding-top: 50px;" href="#">JustorderIT.com</a>
 		</div>
 	</nav>
 	<div class="container" style="max-width:50%">
