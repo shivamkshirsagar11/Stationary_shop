@@ -2,6 +2,7 @@ package com.stationary.controller;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -12,8 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.stationary.Items.Book;
+import com.stationary.Items.Calc;
+import com.stationary.Items.Desk;
+import com.stationary.Items.Pen;
 import com.stationary.entities.Address;
 import com.stationary.entities.User;
+import com.stationary.jdbc.BookDao;
+import com.stationary.jdbc.CalcDao;
+import com.stationary.jdbc.DeskDao;
+import com.stationary.jdbc.PenDao;
 import com.stationary.jdbc.UserDao;
 
 
@@ -21,6 +30,18 @@ import com.stationary.jdbc.UserDao;
 public class homecontroller {
 	@Autowired
 	UserDao SQL;
+	
+	@Autowired
+	BookDao bookdao;
+	
+	@Autowired
+	PenDao pendao;
+	
+	@Autowired
+	DeskDao deskdao;
+	
+	@Autowired
+	CalcDao calcdao;
 	@RequestMapping("/")
 	public String home()
 	{
@@ -72,8 +93,17 @@ public class homecontroller {
 			m.addAttribute("error", "No user found!!");
 			return "login";
 		}
-		else System.out.println(user);
+		List<Book> book = this.bookdao.getall();
+		List<Pen> pen = this.pendao.getall();
+		List<Desk> desk = this.deskdao.getall();
+		List<Calc> calc = this.calcdao.getall();
+		
 		m.addAttribute("user", user);
+		m.addAttribute("book", book);
+		m.addAttribute("desk", desk);
+		m.addAttribute("calc", calc);
+		m.addAttribute("pen", pen);
+		
 		return "index";
 	}
 	@RequestMapping(path = "/profile",method=RequestMethod.POST)

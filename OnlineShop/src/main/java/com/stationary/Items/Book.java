@@ -1,11 +1,10 @@
 package com.stationary.Items;
 
-import java.util.Arrays;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class Book {
@@ -21,7 +20,7 @@ public class Book {
 	private int stock;
 	private String author;
 	private int pages;
-	private byte[] image;
+	private String image;
 
 	public int getProductTableId() {
 		return productTableId;
@@ -37,7 +36,7 @@ public class Book {
 	}
 
 	public Book(String pId, String pName, String des, String compName, int price, int stock, String author, int pages,
-			byte[] image) {
+			String image) {
 		super();
 		this.id = pId;
 		this.name = pName;
@@ -114,18 +113,18 @@ public class Book {
 		this.pages = pages;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
-
-	public void setImage(byte[] image) {
+	
+	public void setImage(String image) {
 		this.image = image;
 	}
 
 	@Override
 	public String toString() {
 		return "Book [pId=" + id + ", pName=" + name + ", des=" + des + ", compName=" + compName + ", price=" + price
-				+ ", stock=" + stock + ", author=" + author + ", pages=" + pages + ", image=" + Arrays.toString(image)
+				+ ", stock=" + stock + ", author=" + author + ", pages=" + pages + ", image=" + image
 				+ "]";
 	}
 

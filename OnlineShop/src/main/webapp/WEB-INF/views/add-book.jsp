@@ -50,9 +50,9 @@
     	<input type="text" class="form-control" id="pages" name="pages" placeholder="Enter No of pages">
   </div>
   
-  <div class="mb-3">
-    	<label for="pic" class="form-label">Picture</label>
-    	<input type="file" class="form-control" id="pic" name="pic">
+  <div class="form-group">
+    <label for="pic" class="form-label">Picture's Url</label>
+    	<input type="url" class="form-control" id="pic" name="picurl">
   </div>
   
     <div class="mb-3">

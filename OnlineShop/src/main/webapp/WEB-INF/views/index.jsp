@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@page isELIgnored="false" %>
-     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,30 +127,65 @@ hr.new5 {
 <hr class="new5">
   <div class="row">
   <h3 style="color:brown;padding-left:680px;">Available Books</h3>
-  <% for(int i = 0; i < 5; i+=1) { %>
+    <c:forEach var="x" items="${book}">
     <div class="card">
-  <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-  <h1>Tailored Jeans</h1>
-  <p class="price">$19.99</p>
-  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+  <img src="${x.getImage()}" alt="Denim Jeans" style="width:100%">
+  <h1>${x.getName()}</h1>
+  <p class="price">${x.getPrice()} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+</svg></p>
+  <p>${x.getDes()}</p>
   <p><button>Add to Cart</button></p>
 </div>
-    <% } %>
+    </c:forEach>
   </div>
   <hr class="new5">
     <div class="row mt-4">
   <h3 style="color:brown;padding-left:680px;">Available Pen</h3>
-  <% for(int i = 0; i < 5; i+=1) { %>
+  <c:forEach var="x" items="${pen}">
     <div class="card">
-  <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-  <h1>Tailored Jeans</h1>
-  <p class="price">$19.99</p>
-  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+  <img src="${x.getImage()}" alt="Denim Jeans" style="width:100%">
+  <h1>${x.getName()}</h1>
+  <p class="price">${x.getPrice()} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+</svg></p>
+  <p>${x.getDes()}</p>
   <p><button>Add to Cart</button></p>
 </div>
-    <% } %>
+    </c:forEach>
   </div>
   
+  <hr class="new5">
+  <div class="row">
+  <h3 style="color:brown;padding-left:680px;">Available Desk</h3>
+    <c:forEach var="x" items="${desk}">
+    <div class="card">
+  <img src="${x.getImage()}" alt="Denim Jeans" style="width:100%">
+  <h1>${x.getName()}</h1>
+  <p class="price">${x.getPrice()} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+</svg></p>
+  <p>${x.getDes()}</p>
+  <p><button>Add to Cart</button></p>
+</div>
+    </c:forEach>
+  </div>
+  
+  <hr class="new5">
+  <div class="row">
+  <h3 style="color:brown;padding-left:680px;">Available Calculator</h3>
+    <c:forEach var="x" items="${calc}">
+    <div class="card">
+  <img src="${x.getImage()}" alt="Denim Jeans" style="width:100%">
+  <h1>${x.getName()}</h1>
+  <p class="price">${x.getPrice()} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+</svg></p>
+  <p>${x.getDes()}</p>
+  <p><button>Add to Cart</button></p>
+</div>
+    </c:forEach>
+  </div>
 	
 </div>
 <!--End Products  -->

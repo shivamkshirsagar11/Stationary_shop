@@ -1,7 +1,5 @@
 package com.stationary.Items;
 
-import java.util.Arrays;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,13 +24,13 @@ private String compName;
 private int price;
 private int stock;
 private String material;
-private byte[] image;
+private String image;
 public Desk() {
 	super();
 	// TODO Auto-generated constructor stub
 }
 public Desk(String pId, String pName, String des, String compName, int price, int stock, String material,
-		byte[] image) {
+		String image) {
 	super();
 	this.id = pId;
 	this.name = pName;
@@ -46,7 +44,7 @@ public Desk(String pId, String pName, String des, String compName, int price, in
 @Override
 public String toString() {
 	return "Desk [pId=" + id + ", pName=" + name + ", des=" + des + ", compName=" + compName + ", price=" + price
-			+ ", stock=" + stock + ", material=" + material + ", image=" + Arrays.toString(image) + "]";
+			+ ", stock=" + stock + ", material=" + material + ", image=" + image + "]";
 }
 public String getId() {
 	return id;
@@ -90,10 +88,10 @@ public String getMaterial() {
 public void setMaterial(String material) {
 	this.material = material;
 }
-public byte[] getImage() {
+public String getImage() {
 	return image;
 }
-public void setImage(byte[] image) {
+public void setImage(String image) {
 	this.image = image;
 }
 

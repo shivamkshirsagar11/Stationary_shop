@@ -55,9 +55,9 @@
   </div>
 
 
-<div class="form-group">
-    <label for="pid">Upload Pic</label>
-    <input type="file" class="form-control" id="pic" name="pic">
+<<div class="form-group">
+    <label for="pic" class="form-label">Picture's Url</label>
+    	<input type="url" class="form-control" id="pic" name="picurl">
   </div>
   <br>
   <button type="submit" class="btn btn-primary">Submit</button>

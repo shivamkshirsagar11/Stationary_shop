@@ -1,12 +1,9 @@
 package com.stationary.Items;
 
-import java.util.Arrays;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Calc {
@@ -29,7 +26,7 @@ public class Calc {
 	private int price;
 	private int stock;
 	private String type;
-	private byte[] image;
+	private String image;
 
 	public Calc() {
 		super();
@@ -37,7 +34,7 @@ public class Calc {
 	}
 
 	public Calc(String id, String name, String des, String compName, int price, int stock, String type,
-			byte[] image) {
+			String image) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -52,7 +49,7 @@ public class Calc {
 	@Override
 	public String toString() {
 		return "Calc [pId=" + id + ", pName=" + name + ", des=" + des + ", compName=" + compName + ", price=" + price
-				+ ", stock=" + stock + ", type=" + type + ", image=" + Arrays.toString(image) + "]";
+				+ ", stock=" + stock + ", type=" + type + ", image=" + image + "]";
 	}
 
 	public String getId() {
@@ -111,11 +108,11 @@ public class Calc {
 		this.type = type;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

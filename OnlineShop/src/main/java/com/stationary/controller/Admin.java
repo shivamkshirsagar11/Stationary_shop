@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationary.Items.*;
@@ -70,7 +69,7 @@ public class Admin {
 	
 	@RequestMapping(path = "/addbook", method = RequestMethod.POST)
 	public ModelAndView addBook(
-			@RequestParam("pic") MultipartFile file,
+			@RequestParam("picurl") String url,
 			@RequestParam("pid") String pid, 
 			@RequestParam("pname") String pname, 
 			@RequestParam("pdesc") String pdesc, 
@@ -81,8 +80,8 @@ public class Admin {
 			@RequestParam("pages") int pages
 			) throws IOException
 	{
-		byte[] data = file.getBytes();
-		Book book = new Book(pid, pname, pdesc, comp, price, stock, author, pages, data);
+		
+		Book book = new Book(pid, pname, pdesc, comp, price, stock, author, pages,url);
 		bookdao.insertObj(book);
 		return new ModelAndView("redirect:" + "admin");
 	}
@@ -90,7 +89,7 @@ public class Admin {
 	
 	@RequestMapping(path = "/addpen", method = RequestMethod.POST)
 	public ModelAndView addPen(
-			@RequestParam("pic") MultipartFile file,
+			@RequestParam("picurl") String url,
 			@RequestParam("pid") String pid, 
 			@RequestParam("pname") String pname, 
 			@RequestParam("pdesc") String pdesc, 
@@ -100,15 +99,15 @@ public class Admin {
 			@RequestParam("color") String color
 			) throws IOException
 	{
-		byte[] data = file.getBytes();
-		Pen pen = new Pen(pid, pname, pdesc, comp, price, stock, color, data);
+		
+		Pen pen = new Pen(pid, pname, pdesc, comp, price, stock, color, url);
 		pendao.insertObj(pen);
 		return new ModelAndView("redirect:" + "admin");
 	}
 	
 	@RequestMapping(path = "/adddesk", method = RequestMethod.POST)
 	public ModelAndView addDesk(
-			@RequestParam("pic") MultipartFile file,
+			@RequestParam("picurl") String url,
 			@RequestParam("pid") String pid, 
 			@RequestParam("pname") String pname, 
 			@RequestParam("pdesc") String pdesc, 
@@ -118,8 +117,8 @@ public class Admin {
 			@RequestParam("material") String material
 			) throws IOException
 	{
-		byte[] data = file.getBytes();
-		Desk desk = new Desk(pid, pname, pdesc, comp, price, stock, material, data);
+		
+		Desk desk = new Desk(pid, pname, pdesc, comp, price, stock, material, url);
 		deskdao.insertObj(desk);
 		return new ModelAndView("redirect:" + "admin");
 	}
@@ -127,7 +126,7 @@ public class Admin {
 	
 	@RequestMapping(path = "/addcalc", method = RequestMethod.POST)
 	public ModelAndView addCalc(
-			@RequestParam("pic") MultipartFile file,
+			@RequestParam("picurl")String url,
 			@RequestParam("pid") String pid, 
 			@RequestParam("pname") String pname, 
 			@RequestParam("pdesc") String pdesc, 
@@ -137,8 +136,8 @@ public class Admin {
 			@RequestParam("type") String type
 			) throws IOException
 	{
-		byte[] data = file.getBytes();
-		Calc calc = new Calc(pid, pname, pdesc, comp, price, stock, type, data);
+		
+		Calc calc = new Calc(pid, pname, pdesc, comp, price, stock, type, url);
 		calcdao.insertObj(calc);
 		return new ModelAndView("redirect:" + "admin");
 	}
