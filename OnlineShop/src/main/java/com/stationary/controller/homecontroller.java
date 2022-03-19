@@ -113,4 +113,9 @@ public class homecontroller {
 		m.addAttribute("user", u);
 		return "profile";
 	}
+	
+	@RequestMapping("/cart")
+	public String cart() {
+		return "cart";
+	}
 }

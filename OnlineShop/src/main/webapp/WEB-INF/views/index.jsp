@@ -72,14 +72,14 @@ hr.new5 {
 		
 			<div class="collapse navbar-collapse nav-right" id="navbarNavAltMarkup">
 				<div class="navbar-nav ">
-					<a class="nav-link active mx-4" aria-current="page" href="#">Home</a> <a
-						class="nav-link" href="#">Products</a> 
+					
 						<a class="nav-link mx-4"
-						href="#">Shop</a>
+						href="cart">Cart</a>
 						<form method="post" action="profile">
 						<input type="hidden" name="userid" value="${user.getId() }">
 						<button type="submit" class="btn btn-warning"
 						>${user.getName()}'s Profile</button> </form> 
+						
 						<input type="text" placeholder="Search.." name="search" style="margin-left:30px;" id="search"><input type="button" onclick="search(document.getElementById('search').value)" value="go" class="btn btn-success">
 						
 						<a href="login" class="btn btn-danger" style="margin-left:50px;">Logout</a>
