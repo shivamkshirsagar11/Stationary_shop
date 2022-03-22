@@ -1,5 +1,7 @@
 package com.stationary.jdbc;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -54,11 +56,11 @@ public class CartGeneratorDao {
 				return null;
 			}
 	}
-	
+	@Transactional
 	public int addCart(CartGenerator cg) {
 		return (int) ht.save(cg);
 	}
-	
+	@Transactional
 	public boolean deleteCart() {
 		try {
 			ht.delete(this.CGobj);

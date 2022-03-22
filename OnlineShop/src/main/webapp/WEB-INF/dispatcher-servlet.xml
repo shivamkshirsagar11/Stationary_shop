@@ -58,6 +58,9 @@ p:dataSource-ref="data">
 <value>com.stationary.Items.Calc</value>
 <value>com.stationary.Items.Book</value>
 <value>com.stationary.entities.User</value>
+<value>com.stationary.entities.CartGenerator</value>
+<value>com.stationary.entities.UserCart</value>
+<value>com.stationary.entities.UserOrders</value>
 </list>
 </property>
 </bean>
