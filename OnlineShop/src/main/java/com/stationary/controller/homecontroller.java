@@ -28,6 +28,7 @@ import com.stationary.jdbc.PenDao;
 import com.stationary.jdbc.UserCartDao;
 import com.stationary.jdbc.UserDao;
 import com.stationary.jdbc.UserOrderDao;
+import com.stationary.jdbc.advanced.ItemMiddleware;
 
 
 @Controller
@@ -41,7 +42,10 @@ public class homecontroller {
 	public void setLoggedUserId(int loggedUserId) {
 		this.loggedUserId = loggedUserId;
 	}
-
+	
+	@Autowired
+	ItemMiddleware im;
+	
 	@Autowired
 	UserDao SQL;
 	
@@ -250,6 +254,9 @@ public class homecontroller {
 	public String generateBill(Model m) {
 		List<UserCart> ordersInThisSession = userCartJDBCObj.getAllCartItems(this.usercartId);
 		cartJDBCObj.deleteCart();
+		for (UserCart i : ordersInThisSession) {
+			im.findItemAndReduceStock(i.getItemId(), i.getItemCount());
+		}
 		UserOrders uo = new UserOrders();
 		uo.setOrderId(Integer.toString(this.usercartId),true);
 		uo.setOrderingDate(new Date().toString());
