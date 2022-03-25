@@ -35,7 +35,7 @@ public class BookDao{
 	public void setJt(JdbcTemplate jt) {
 		this.jt = jt;
 	}
-
+	
 	@Transactional
 	public int insertObj(Book p) {
 		// TODO Auto-generated method stub
@@ -51,9 +51,11 @@ public class BookDao{
 	}
 
 	
+	@Transactional
 	public int updateObj(Book p) {
 		// TODO Auto-generated method stub
-		return 0;
+		this.ht.update(p);
+		return 1;
 	}
 
 	

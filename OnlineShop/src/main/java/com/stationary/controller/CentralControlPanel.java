@@ -32,7 +32,7 @@ import com.stationary.jdbc.advanced.ItemMiddleware;
 
 
 @Controller
-public class homecontroller {
+public class CentralControlPanel {
 	private int loggedUserId;
 	private int usercartId;
 	public int getLoggedUserId() {

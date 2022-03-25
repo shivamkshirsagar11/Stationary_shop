@@ -54,9 +54,11 @@ public class CalcDao{
 	}
 
 	
+	@Transactional
 	public int updateObj(Calc p) {
 		// TODO Auto-generated method stub
-		return 0;
+		this.ht.update(p);
+		return 1;
 	}
 
 	

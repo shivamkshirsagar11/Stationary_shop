@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +17,7 @@ import com.stationary.Items.*;
 import com.stationary.jdbc.*;
 
 @Controller
-public class Admin {
+public class CentralAdminPanel {
 	@Autowired
 	BookDao bookdao;
 	
@@ -178,4 +180,68 @@ public class Admin {
 		return new ModelAndView("redirect:" + "admin");
 	}
 	
+	@RequestMapping("/updatebookform")
+	public String updateBookform(@RequestParam("pid") String pid, Model model)
+	{
+		int id = Integer.parseInt(pid);
+		Book b = bookdao.getOneObj(id);
+		model.addAttribute("book", b);
+		return "updatebook";
+	}
+	
+	@RequestMapping("/updatebook")
+	public ModelAndView updateBook(@ModelAttribute("book") Book book)
+	{
+		bookdao.updateObj(book);
+		return new ModelAndView("redirect:admin");
+	}
+	
+	@RequestMapping("/updatepenform")
+	public String updatePenform(@RequestParam("pid") String pid, Model model)
+	{
+		int id = Integer.parseInt(pid);
+		Pen p = pendao.getOneObj(id);
+		model.addAttribute("pen", p);
+		return "updatepen";
+	}
+	
+	@RequestMapping("/updatepen")
+	public ModelAndView updatePen(@ModelAttribute("pen") Pen pen)
+	{
+		pendao.updateObj(pen);
+		return new ModelAndView("redirect:admin");
+	}
+	
+	@RequestMapping("/updatedeskform")
+	public String updateDeskform(@RequestParam("pid") String pid, Model model)
+	{
+		int id = Integer.parseInt(pid);
+		Desk d = deskdao.getOneObj(id);
+		model.addAttribute("desk", d);
+		return "updatedesk";
+	}
+	
+	@RequestMapping("/updatedesk")
+	public ModelAndView updateDesk(@ModelAttribute("desk") Desk desk)
+	{
+		deskdao.updateObj(desk);
+		return new ModelAndView("redirect:admin");
+	}
+	
+	@RequestMapping("/updatecalcform")
+	public String updateCalcform(@RequestParam("pid") String pid, Model model)
+	{
+		int id = Integer.parseInt(pid);
+		Calc c = calcdao.getOneObj(id);
+		model.addAttribute("calc", c);
+		return "updatecalc";
+	}
+	
+	@RequestMapping("/updatecalc")
+	public ModelAndView updateCalc(@ModelAttribute("calc") Calc calc)
+	{
+		calcdao.updateObj(calc);
+		return new ModelAndView("redirect:admin");
+	}
+		
 }

@@ -40,8 +40,8 @@
 					<td>${book.getPages()}</td>
 					<td>${book.getPrice() }</td>
 					<td>${book.getStock() }</td>
-					
-					<form method="post" action="">
+					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<form method="post" action="updatebookform">
 					<input type="hidden" name="pid" value="${book.getProductTableId()}">
 					<td><button>Update</button></td>
 					</form>
@@ -80,8 +80,8 @@
 					<td>${book.getColor()}</td>
 					<td>${book.getPrice() }</td>
 					<td>${book.getStock() }</td>
-					
-					<form method="post" action="">
+					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<form method="post" action="updatepenform">
 					<input type="hidden" name="pid" value="${book.getProductTableId()}">
 					<td><button>Update</button></td>
 					</form>
@@ -121,8 +121,8 @@
 					<td>${book.getMaterial()}</td>
 					<td>${book.getPrice() }</td>
 					<td>${book.getStock() }</td>
-					
-					<form method="post" action="">
+					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<form method="post" action="updatedeskform">
 					<input type="hidden" name="pid" value="${book.getProductTableId()}">
 					<td><button>Update</button></td>
 					</form>
@@ -162,8 +162,8 @@
 					<td>${book.getType()}</td>
 					<td>${book.getPrice() }</td>
 					<td>${book.getStock() }</td>
-					
-					<form method="post" action="">
+					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<form method="post" action="updatecalcform">
 					<input type="hidden" name="pid" value="${book.getProductTableId()}">
 					<td><button>Update</button></td>
 					</form>

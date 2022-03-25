@@ -54,9 +54,10 @@ public class DeskDao{
 	}
 
 	
+	@Transactional
 	public int updateObj(Desk p) {
 		// TODO Auto-generated method stub
-		
+		this.ht.update(p);
 		return 0;
 	}
 	
