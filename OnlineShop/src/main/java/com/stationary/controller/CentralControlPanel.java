@@ -138,8 +138,10 @@ public class CentralControlPanel {
 	@RequestMapping(path = "/profile",method=RequestMethod.POST)
 	public String profile(Model m,@RequestParam(name="userid")int id) {
 		User u = SQL.getUserById(id);
-		
+		User user = SQL.getUserById(loggedUserId);
+		Address add = user.getAddress();
 		m.addAttribute("user", u);
+		m.addAttribute("add", add);
 		return "profile";
 	}
 	

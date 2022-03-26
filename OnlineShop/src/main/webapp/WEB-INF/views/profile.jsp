@@ -131,7 +131,7 @@ body{
         <img src="https://cdn5.vectorstock.com/i/thumb-large/45/79/male-avatar-profile-picture-silhouette-light-vector-4684579.jpg" 
         alt="user" width="100">
         <h4>${user.getName() }</h4>
-         <!-- <p>UI Developer</p> -->
+         
     </div>
     <div class="right">
         <div class="info">
@@ -154,10 +154,12 @@ body{
                     <h4>LastLogin</h4>
                     <p> ${user.getLastLogin() }</p>
                  </div>
-                 <!-- <div class="data">
-                   <h4>Most Viewed</h4>
-                    <p>dolor sit amet.</p>
-              </div> -->
+                 <div class="data">
+                    <h4>Address</h4>
+                    <p> ${add.gethNo() }, ${add.getAddress1() }, ${add.getAddress2() }
+                 	, ${add.getCity() }
+                 	, ${add.getPincode() }</p>
+                 </div>
             </div>
         </div>
       
