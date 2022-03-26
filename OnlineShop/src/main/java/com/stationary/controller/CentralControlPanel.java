@@ -152,6 +152,7 @@ public class CentralControlPanel {
 			m.addAttribute("cg", cg);
 			this.usercartId = cg.getId();
 			List<UserCart> uc = userCartJDBCObj.getAllCartItems(cg.getId());
+			
 			m.addAttribute("ucl", uc);
 		}
 		else {
@@ -166,6 +167,7 @@ public class CentralControlPanel {
 	public String addtocart(@RequestParam(name = "name") String name,
 			@RequestParam(name="price")int price,
 			@RequestParam(name="id")String id,
+			@RequestParam(name="pimg")String pimg,
 			@RequestParam(name="qty")int qty) {
 		try {
 			CartGenerator cg = new CartGenerator();
@@ -182,6 +184,8 @@ public class CentralControlPanel {
 					ucp.setItemId(id);
 					ucp.setItemName(name);
 					ucp.setItemPrice(price);
+					//System.out.println(pimg);
+					ucp.setImageUrl(pimg);
 					ucp.setUserId(this.loggedUserId);
 					userCartJDBCObj.addItems(ucp);
 				}else return "already in cart";
@@ -198,6 +202,7 @@ public class CentralControlPanel {
 				uc.setItemId(id);
 				uc.setItemName(name);
 				uc.setItemPrice(price);
+				uc.setImageUrl(pimg);
 				uc.setUserId(this.loggedUserId);
 				userCartJDBCObj.addItems(uc);
 			}
@@ -252,6 +257,9 @@ public class CentralControlPanel {
 	
 	@RequestMapping(path = "/billing",method=RequestMethod.GET)
 	public String generateBill(Model m) {
+		try {
+			User user = SQL.getUserById(loggedUserId);
+			Address ship = user.getAddress();
 		List<UserCart> ordersInThisSession = userCartJDBCObj.getAllCartItems(this.usercartId);
 		cartJDBCObj.deleteCart();
 		for (UserCart i : ordersInThisSession) {
@@ -266,7 +274,26 @@ public class CentralControlPanel {
 		uo.setCartId(this.usercartId);
 		userorderJDBCobj.saveThisOrder(uo);
 		m.addAttribute("bill", uo);
+		m.addAttribute("shipping_address", ship);
 		return "bill-page";
+		}catch(Exception e) {
+			User user = SQL.getUserById(loggedUserId);
+			Address ship = user.getAddress();
+			List<UserCart> ordersInThisSession = userCartJDBCObj.getAllCartItems(this.usercartId);
+			for (UserCart i : ordersInThisSession) {
+				im.findItemAndReduceStock(i.getItemId(), i.getItemCount());
+			}
+			UserOrders uo = new UserOrders();
+			uo.setOrderId(Integer.toString(this.usercartId),true);
+			uo.setOrderingDate(new Date().toString());
+			uo.setOrdersPerBatch(ordersInThisSession);
+			uo.calculateTotal();
+			uo.setUserId(this.loggedUserId);
+			uo.setCartId(this.usercartId);
+			m.addAttribute("bill", uo);
+			m.addAttribute("shipping_address", ship);
+			return "bill-page";
+		}
 	}
 	
 	@RequestMapping(path = "/all-order",method=RequestMethod.GET)

@@ -55,7 +55,7 @@ hr.new5 {
   border-radius: 5px;
 }
 </style>
-<title>INDEX</title>
+<title>Home</title>
 </head>
 <body>
 
@@ -155,7 +155,7 @@ hr.new5 {
 </svg></p>
   <p>${x.getDes()}</p>
   <p>Available ${x.getStock()} Copies</p>
-<p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1'])">Add to Cart</button></p>
+<p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1','${x.getImage() }'])">Add to Cart</button></p>
 
 <p class="${x.getId()}" style="display:none;"><button onclick="return removefromcartAjax('${x.getId()}')">Remove from Cart</button></p>
 
@@ -175,7 +175,7 @@ hr.new5 {
 </svg></p>
   <p>${x.getDes()}</p>
   <p>Available ${x.getStock()} Items</p>
-  <p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1'])">Add to Cart</button></p>
+  <p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1','${x.getImage() }'])">Add to Cart</button></p>
 
 <p class="${x.getId()}" style="display:none;"><button onclick="return removefromcartAjax('${x.getId()}')">Remove from Cart</button></p>
 
@@ -196,7 +196,7 @@ hr.new5 {
 </svg></p>
   <p>${x.getDes()}</p>
   <p>Available ${x.getStock()} Items</p>
-  <p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1'])">Add to Cart</button></p>
+  <p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1','${x.getImage() }'])">Add to Cart</button></p>
 
 <p class="${x.getId()}" style="display:none;"><button onclick="return removefromcartAjax('${x.getId()}')">Remove from Cart</button></p>
 
@@ -217,7 +217,7 @@ hr.new5 {
 </svg></p>
   <p>${x.getDes()}</p>
   <p>Available ${x.getStock()} Items</p>
-  <p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1'])">Add to Cart</button></p>
+  <p class="${x.getId()}"><button onclick="return addtocartAjax(['${x.getName()}','${x.getPrice() }','${x.getId()}','1','${x.getImage() }'])">Add to Cart</button></p>
 
 <p class="${x.getId()}" style="display:none;"><button onclick="return removefromcartAjax('${x.getId()}')">Remove from Cart</button></p>
 
@@ -247,6 +247,7 @@ function addtocartAjax(a){
 	    "price":a[1],
 	    "id":a[2],
 	    "qty":a[3],
+	    "pimg":a[4],
 	    },
 	    success: function(data){
 		 

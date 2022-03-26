@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
 table,th,td{
@@ -19,12 +20,12 @@ border: 2px solid black;
 </style>
 </head>
 <body>
-<h2>Cart</h2><hr>
 <c:if test="${cg != null}">
-<table>
+<table class="table table-striped">
 <tr><th>Cart uniq id</th><td>${cg.getId()}</td></tr>
 <tr><th>Cart creation date</th><td>${cg.getCartGenerationDate()}</td></tr>
-<tr>
+<tr class="thead-dark">
+<th>Product Image</th>
 <th>Product Id</th>
 <th>Product Name</th>
 <th>Product Price</th>
@@ -33,6 +34,7 @@ border: 2px solid black;
 </tr>
 <c:forEach var="x" items="${ucl}">
 <tr>
+<th><img src="${x.getImageUrl()}" height="150px" width="130px"/></th>
 <td>${x.getItemId() }</td>
 <td>${x.getItemName() }</td>
 <td>${x.getItemPrice() }</td>

@@ -1,5 +1,6 @@
 package com.stationary.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,10 +11,15 @@ public class UserCart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private int userId;
 	private int cartId;
-	private String dateAndTime;
+	private String dateAndTime,imageUrl;
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	private String itemName;
 	private String itemId;
 	private int itemPrice;

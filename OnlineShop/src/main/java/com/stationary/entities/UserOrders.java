@@ -1,5 +1,6 @@
 package com.stationary.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,11 @@ public class UserOrders {
 		// TODO Auto-generated constructor stub
 	}
 	private String orderingDate;
+	@Column(unique=true)
 	private String orderId;
-	private int userId,cartId;
+	private int userId;
+	@Column(unique=true)
+	private int cartId;
 	public int getCartId() {
 		return cartId;
 	}
