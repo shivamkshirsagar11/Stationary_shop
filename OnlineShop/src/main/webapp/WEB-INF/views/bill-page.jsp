@@ -21,6 +21,17 @@
 
 <table>
 <tr><th>Shipping To:<br>_____________________</th></tr>
+
+<tr>
+<th>Name</th><td>${info.getName()}</td>
+</tr>
+<tr>
+<th>Email</th><td>${info.getEmail()}</td>
+</tr>
+<tr>
+<th>Contact no</th><td>${info.getMobile()}</td>
+</tr>
+<tr><th>_____________________</th></tr>
 <tr>
 <th>Dropping Location</th><td>&nbsp;&nbsp;&nbsp; ${shipping_address.gethNo() }, ${shipping_address.getAddress1() }, ${shipping_address.getAddress2() }</td>
 </tr>
@@ -38,7 +49,6 @@
 <tr><th>Ordering date</th><td>${bill.getOrderingDate() }</td></tr>
 <tr><th>Order ID</th><td>${bill.getOrderId() }</td></tr>
 <tr><th>Ordering cart ID</th><td>${bill.getCartId() }</td></tr>
-<tr><th>Status</th><td><span class="label label-success">PAID</span></td></tr>
 </table>
 
 

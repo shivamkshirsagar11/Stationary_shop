@@ -1,6 +1,7 @@
 package com.stationary.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationary.Items.*;
+import com.stationary.entities.User;
+import com.stationary.entities.UserOrders;
 import com.stationary.jdbc.*;
 
 @Controller
 public class CentralAdminPanel {
 	@Autowired
 	BookDao bookdao;
+	
+	@Autowired
+	UserOrderDao userorderJDBCobj;
+	
+	@Autowired
+	UserDao userdao;
 	
 	@Autowired
 	PenDao pendao;
@@ -242,6 +251,19 @@ public class CentralAdminPanel {
 	{
 		calcdao.updateObj(calc);
 		return new ModelAndView("redirect:admin");
+	}
+	
+	@RequestMapping("/all-customer")
+	public String allCustomer(Model m)
+	{	ArrayList<Integer> tot = new ArrayList<>();
+		List<User> ul = userdao.getAll();
+		for (User i : ul) {
+			tot.add(userorderJDBCobj.getAllOrdersCount(i.getId()));
+		}
+		
+		m.addAttribute("ul",ul);
+		m.addAttribute("tot",tot);
+		return "all-customer";
 	}
 		
 }

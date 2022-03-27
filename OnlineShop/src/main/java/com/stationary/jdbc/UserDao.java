@@ -1,5 +1,7 @@
 package com.stationary.jdbc;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +71,20 @@ public class UserDao{
 	public User getUserById(int id) {
 		return ht.get(User.class, id);
 	}
-
+	
+	public List<User> getAll(){
+		try {
+			String query = "select * from user where id not in (select admin from adminmain)";
+			List<User> ul = jt.query(query, new RowMappingUser());
+			return ul;
+		}catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			return null;
+		}
+	}
+	
+	@Transactional
+	public void update(User u) {
+		ht.saveOrUpdate(u);
+	}
 }

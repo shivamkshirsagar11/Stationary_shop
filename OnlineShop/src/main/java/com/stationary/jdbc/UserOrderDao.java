@@ -60,4 +60,16 @@ public class UserOrderDao {
 			return null;
 		}
 	}
+	
+	public int getAllOrdersCount(int userId){
+		try {
+			String query = "select * from UserOrders where userId = ?";
+			List<UserOrders> uol = jt.query(query, new RowMappingUserOrders(),userId);
+			return uol.size();
+		}
+		catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			return 0;
+		}
+	}
 }

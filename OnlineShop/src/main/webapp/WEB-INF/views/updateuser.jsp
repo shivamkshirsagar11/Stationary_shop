@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false" %>
     <style type="text/css"> 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
 *{
@@ -116,7 +118,7 @@ input[type="submit"]:hover{
 <meta charset="ISO-8859-1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<title>Sign Up</title>
+<title>Update Profile</title>
 </head>
 <body>
 
@@ -131,49 +133,50 @@ input[type="submit"]:hover{
 		</div>
 	</nav>
 <div class="container" style="max-width:50%;">
-<h3 style="color:yellow;">Register Your Self</h3>
+<h3 style="color:yellow;">Edit your Info</h3>
 
-<form action="saveuser" method="POST" >
+<form action="updatedetails" method="POST" >
 	<div class="mb-3">
     	<label for="name" class="form-label" style="color:yellow;">Name</label>
-    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+    	<input type="text" class="form-control" id="name" name="name" value="${user.getName() }">
   </div>
   
   <div class="mb-3">
     	<label for="email" class="form-label" style="color:yellow;">Email</label>
-    	<input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+    	<input type="email" class="form-control" id="email" name="email" value="${user.getEmail() }">
   </div>
   
   <div class="mb-3">
     	<label for="mobile" class="form-label" style="color:yellow;">Mobile</label>
-    	<input type="text" class="form-control" id="moblie" name="mobile" placeholder="Enter Your Mobile">
+    	<input type="text" class="form-control" id="moblie" name="mobile" value="${user.getMobile() }">
   </div>
 
 	<div class="mb-3">
     	<label for="address" class="form-label" style="color:yellow;">Address</label>
-    	<input type="text" class="form-control" id="address" name="hNo" placeholder="House No">
-    	<input type="text" class="form-control" id="address" name="add1" placeholder="Address Line">
-    	<input type="text" class="form-control" id="address" name="add2" placeholder="Street">
+    	<input type="text" class="form-control" id="address" name="hNo" value="${user.getAddress().gethNo() }">
+    	<input type="text" class="form-control" id="address" name="add1" value="${user.getAddress().getAddress1() }">
+    	<input type="text" class="form-control" id="address" name="add2" value="${user.getAddress().getAddress2() }">
   	</div>
   	<div class="mb-3">
     	<label for="city" class="form-label" style="color:yellow;">City</label>
-    	<input type="text" class="form-control" id="city" name="city" placeholder="City">
+    	<input type="text" class="form-control" id="city" name="city" value="${user.getAddress().getCity() }">
   </div>
   
   <div class="mb-3">
     	<label for="pincode" class="form-label" style="color:yellow;">Pincode</label>
-    	<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode"> 
+    	<input type="text" class="form-control" id="pincode" name="pincode" value="${user.getAddress().getPincode() }"> 
   </div>
   
   <div class="mb-3">
-    	<label for="password" class="form-label" style="color:yellow;">Password</label>
-    	<input type="password" class="form-control" id="password" name="psw" placeholder="Enter Password">
+  <small style="color:yellow;"><b>If you don't change password the old password will remain as it is!</b></small>
+    	<br><label for="password" class="form-label" style="color:yellow;">New Password</label>
+    	<input type="password" class="form-control" id="password" name="psw" value="${user.getPassword() }">
   </div>
   
   <div class="mb-3">
-    	<label for="conform" class="form-label" style="color:yellow;">Conform Password</label>
-    	<span id="message"></span>
-    	<input type="password" class="form-control" id="conform" name="conpassword" placeholder="Conform Your Password">
+    	<label for="conform" class="form-label" style="color:yellow;">Conform New Password</label>
+    	<input type="password" class="form-control" id="conform" name="conpassword" value="${user.getPassword() }">
+  		<span id="message"></span>
   </div>
   
   <div class="mb-3">
@@ -187,9 +190,9 @@ input[type="submit"]:hover{
 <script >
 $('#password, #conform').on('keyup', function () {
 	  if ($('#password').val() == $('#conform').val()) {
-	    $('#message').html('Matching').css('color', 'green');
+	    $('#message').html('Passwords are Matching').css('color', 'yellow');
 	  } else 
-	    $('#message').html('Not Matching').css('color', 'red');
+	    $('#message').html('Passwords are not Matching').css('color', 'white');
 	});
 
 </script>

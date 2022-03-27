@@ -280,7 +280,9 @@ public class CentralControlPanel {
 		uo.setUserId(this.loggedUserId);
 		uo.setCartId(this.usercartId);
 		userorderJDBCobj.saveThisOrder(uo);
+		User u = SQL.getUserById(loggedUserId);
 		m.addAttribute("bill", uo);
+		m.addAttribute("info", u);
 		m.addAttribute("shipping_address", ship);
 		return "bill-page";
 		}catch(Exception e) {
@@ -297,6 +299,8 @@ public class CentralControlPanel {
 			uo.calculateTotal();
 			uo.setUserId(this.loggedUserId);
 			uo.setCartId(this.usercartId);
+			User u = SQL.getUserById(loggedUserId);
+			m.addAttribute("info", u);
 			m.addAttribute("bill", uo);
 			m.addAttribute("shipping_address", ship);
 			return "bill-page";
@@ -313,5 +317,37 @@ public class CentralControlPanel {
 		m.addAttribute("user",user);
 		m.addAttribute("orderList",uol);
 		return "past-orders";
+	}
+	@RequestMapping(path = "/updateuser",method=RequestMethod.GET)
+	public String updateUser(Model m) {
+		User user = SQL.getUserById(loggedUserId);
+		m.addAttribute("user",user);
+		return "updateuser";
+	}
+	
+	@RequestMapping(path = "/updatedetails",method = RequestMethod.POST)
+	public String updatedetails(@RequestParam(name = "name",required=false)String name,
+						 @RequestParam(name = "email",required=false)String email,
+						 @RequestParam(name = "mobile",required=false)String mobile,
+						 @RequestParam(name = "hNo",required=false)String hno,
+						 @RequestParam(name = "add1",required=false)String add1,
+						 @RequestParam(name = "add2",required=false)String add2,
+						 @RequestParam(name = "city",required=false)String city,
+						 @RequestParam(name = "pincode",required=false)String zip,
+						 @RequestParam(name = "psw",required=false)String psw)
+	{
+		Address a = new Address(hno,add1,add2,city,zip);
+		User u = new User(name,psw,mobile,email,new Date().toString(),a);
+		u.setAddress(a);		
+		SQL.update(u);
+		return "login";
+	}
+	
+	@RequestMapping(path = "/logout",method=RequestMethod.GET)
+	public String loggingOut(Model m) {
+		User user = SQL.getUserById(loggedUserId);
+		user.setLastLogin(new Date().toString());
+		SQL.update(user);
+		return "tempPage";
 	}
 }

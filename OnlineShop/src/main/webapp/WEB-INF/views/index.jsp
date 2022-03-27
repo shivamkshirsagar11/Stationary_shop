@@ -6,11 +6,6 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<!-- <script type = "text/javascript" >
-        function preventBack(){window.history.forward();}
-         setTimeout("preventBack()", 0);
-         window.onunload=function(){null};
-     </script> -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -82,7 +77,7 @@ hr.new5 {
 						<a href="all-order" class="nav-link mx-4">Order History</a>
 						<input type="text" placeholder="Search.." name="search" style="margin-left:30px;" id="search"><input type="button" onclick="search(document.getElementById('search').value)" value="go" class="btn btn-success">
 						
-						<a href="login" class="btn btn-danger" style="margin-left:50px;">Logout</a>
+						<a href="logout" class="btn btn-danger" style="margin-left:50px;">Logout</a>
 						
 				</div>
 			</div>

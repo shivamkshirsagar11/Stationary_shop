@@ -12,10 +12,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<title>Insert title here</title>
+<title>Manage Product</title>
 </head>
 <body>
-	<h2>Welcome to Admin Pages</h2>
+	<h2>Product details</h2>
 	<div class="container my-5">
 		<h3>Books</h3>
 		<a href="bookform" class="btn btn-success">Add Book</a>
