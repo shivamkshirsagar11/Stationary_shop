@@ -149,7 +149,6 @@ input[type="submit"]:hover{
         <input type="submit" value="Login">
         <div class="signup_link">
           Not a member? <a href="signup">Signup</a><br>
-          <a onclick="return adminPriority()">Admin login</a>
         </div>
       </form>
     </div>

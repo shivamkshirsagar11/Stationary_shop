@@ -54,7 +54,7 @@ public class CentralAdminPanel {
 		return "add-desk";
 	}
 	
-	@RequestMapping(path = "/admin")
+	@RequestMapping(path = "/adminproduct")
 	public ModelAndView admin()
 	{
 		List<Book> books = this.bookdao.getall();

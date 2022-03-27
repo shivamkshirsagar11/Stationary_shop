@@ -20,6 +20,7 @@ import com.stationary.entities.CartGenerator;
 import com.stationary.entities.User;
 import com.stationary.entities.UserCart;
 import com.stationary.entities.UserOrders;
+import com.stationary.jdbc.AdminDao;
 import com.stationary.jdbc.BookDao;
 import com.stationary.jdbc.CalcDao;
 import com.stationary.jdbc.CartGeneratorDao;
@@ -45,6 +46,9 @@ public class CentralControlPanel {
 	
 	@Autowired
 	ItemMiddleware im;
+	
+	@Autowired
+	AdminDao adminUtil;
 	
 	@Autowired
 	UserDao SQL;
@@ -122,6 +126,7 @@ public class CentralControlPanel {
 			return "login";
 		}
 		this.setLoggedUserId(user.getId());
+		if(adminUtil.getAdminByAdminId(loggedUserId))return "admin";
 		List<Book> book = this.bookdao.getall();
 		List<Pen> pen = this.pendao.getall();
 		List<Desk> desk = this.deskdao.getall();

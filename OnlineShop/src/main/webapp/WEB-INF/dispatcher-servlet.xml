@@ -61,6 +61,7 @@ p:dataSource-ref="data">
 <value>com.stationary.entities.CartGenerator</value>
 <value>com.stationary.entities.UserCart</value>
 <value>com.stationary.entities.UserOrders</value>
+<value>com.stationary.entities.AdminMain</value>
 </list>
 </property>
 </bean>
