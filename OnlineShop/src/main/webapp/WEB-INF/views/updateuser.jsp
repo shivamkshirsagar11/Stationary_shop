@@ -180,20 +180,23 @@ input[type="submit"]:hover{
   </div>
   
   <div class="mb-3">
-  	<button class="btn btn-warning" type="submit">SUBMIT</button>
+  	<button class="btn btn-danger" id="submitHandle" type="submit">SUBMIT</button>
   </div>
 </form>
 
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script >
-$('#password, #conform').on('keyup', function () {
-	  if ($('#password').val() == $('#conform').val()) {
-	    $('#message').html('Passwords are Matching').css('color', 'yellow');
-	  } else 
-	    $('#message').html('Passwords are not Matching').css('color', 'white');
-	});
+<script>
+	$('#password, #conform').on('keyup', function () {
+		  if ($('#password').val() == $('#conform').val()) {
+		    $('#message').html('Passwords are Matching').css('color', 'yellow');
+		    document.getElementById("submitHandle").disabled = false;
+		  } else {
+		    $('#message').html('Passwords are not Matching').css('color', 'white');
+		  document.getElementById("submitHandle").disabled = true;
+		  }
+		});
 
 </script>
 </body>

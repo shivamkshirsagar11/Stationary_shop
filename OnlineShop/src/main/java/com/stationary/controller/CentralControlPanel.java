@@ -34,14 +34,19 @@ import com.stationary.jdbc.advanced.ItemMiddleware;
 
 @Controller
 public class CentralControlPanel {
-	private int loggedUserId;
-	private int usercartId;
+	private int loggedUserId = -1;
+	private int usercartId = -1;
 	public int getLoggedUserId() {
 		return loggedUserId;
 	}
 
 	public void setLoggedUserId(int loggedUserId) {
 		this.loggedUserId = loggedUserId;
+	}
+	
+	public void destroySessionProtocol() {
+		this.loggedUserId = -1;
+		this.usercartId = -1;
 	}
 	
 	@Autowired
@@ -142,16 +147,24 @@ public class CentralControlPanel {
 	}
 	@RequestMapping(path = "/profile",method=RequestMethod.POST)
 	public String profile(Model m,@RequestParam(name="userid")int id) {
+		try{
+		if(loggedUserId == -1) return "login";
 		User u = SQL.getUserById(id);
 		User user = SQL.getUserById(loggedUserId);
 		Address add = user.getAddress();
 		m.addAttribute("user", u);
 		m.addAttribute("add", add);
 		return "profile";
+		}catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/cart")
 	public String cart(Model m) {
+		try {
+		if(loggedUserId == -1) return "login";
 		CartGenerator cg = new CartGenerator();
 		cg = cartJDBCObj.getCart(this.getLoggedUserId());
 		//System.out.println(this.getLoggedUserId());
@@ -167,6 +180,10 @@ public class CentralControlPanel {
 			m.addAttribute("nullcarterror", "Nothing in cart right now!!");
 		}
 		return "cart";
+		}catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			return "login";
+		}
 	}
 	
 	@RequestMapping(path = "/addtocart",method=RequestMethod.POST)
@@ -177,6 +194,7 @@ public class CentralControlPanel {
 			@RequestParam(name="pimg")String pimg,
 			@RequestParam(name="qty")int qty) {
 		try {
+			if(loggedUserId == -1) loggingOut(null);
 			CartGenerator cg = new CartGenerator();
 			cg = cartJDBCObj.getCart(this.getLoggedUserId());
 			if(cg != null) {
@@ -226,6 +244,7 @@ public class CentralControlPanel {
 	public String removefromcart(@RequestParam(name = "id") String id
 			) {
 		try {
+			if(loggedUserId == -1) loggingOut(null);
 			userCartJDBCObj.deleteAnItem(usercartId, id);			
 			return "done";
 		}catch(Exception e) {
@@ -240,6 +259,7 @@ public class CentralControlPanel {
 			@RequestParam(name = "qty") int qty
 			) {
 		try {
+			if(loggedUserId == -1) loggingOut(null);
 			userCartJDBCObj.incrementItem(usercartId, id,qty);		
 			return "done";
 		}catch(Exception e) {
@@ -254,6 +274,7 @@ public class CentralControlPanel {
 			@RequestParam(name = "qty") int qty
 			) {
 		try {
+			if(loggedUserId == -1) loggingOut(null);
 			userCartJDBCObj.decrementItem(usercartId, id,qty);		
 			return "done";
 		}catch(Exception e) {
@@ -265,6 +286,7 @@ public class CentralControlPanel {
 	@RequestMapping(path = "/billing",method=RequestMethod.GET)
 	public String generateBill(Model m) {
 		try {
+			if(loggedUserId == -1) return "login";
 			User user = SQL.getUserById(loggedUserId);
 			Address ship = user.getAddress();
 		List<UserCart> ordersInThisSession = userCartJDBCObj.getAllCartItems(this.usercartId);
@@ -309,6 +331,7 @@ public class CentralControlPanel {
 	
 	@RequestMapping(path = "/all-order",method=RequestMethod.GET)
 	public String allOrder(Model m) {
+		if(loggedUserId == -1) return "login";
 		User user = SQL.getUserById(loggedUserId);
 		List<UserOrders> uol = userorderJDBCobj.getAllOrders(loggedUserId);
 		for(UserOrders uo: uol) {
@@ -320,6 +343,7 @@ public class CentralControlPanel {
 	}
 	@RequestMapping(path = "/updateuser",method=RequestMethod.GET)
 	public String updateUser(Model m) {
+		if(loggedUserId == -1) return "login";
 		User user = SQL.getUserById(loggedUserId);
 		m.addAttribute("user",user);
 		return "updateuser";
@@ -336,18 +360,27 @@ public class CentralControlPanel {
 						 @RequestParam(name = "pincode",required=false)String zip,
 						 @RequestParam(name = "psw",required=false)String psw)
 	{
+		try {
+			if(loggedUserId == -1) return "login";
 		Address a = new Address(hno,add1,add2,city,zip);
 		User u = new User(name,psw,mobile,email,new Date().toString(),a);
+		u.setId(loggedUserId);
 		u.setAddress(a);		
 		SQL.update(u);
 		return "login";
+		}catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			return "login";
+		}
 	}
 	
 	@RequestMapping(path = "/logout",method=RequestMethod.GET)
 	public String loggingOut(Model m) {
+		if(loggedUserId == -1) return "login";
 		User user = SQL.getUserById(loggedUserId);
 		user.setLastLogin(new Date().toString());
 		SQL.update(user);
+		destroySessionProtocol();
 		return "tempPage";
 	}
 }

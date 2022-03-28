@@ -85,6 +85,10 @@ public class UserDao{
 	
 	@Transactional
 	public void update(User u) {
-		ht.saveOrUpdate(u);
+		try {
+			this.ht.update(u);
+		}catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+		}
 	}
 }
