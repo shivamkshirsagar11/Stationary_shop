@@ -55,7 +55,7 @@
   </div>
 
 
-<<div class="form-group">
+<div class="form-group">
     <label for="pic" class="form-label">Picture's Url</label>
     	<input type="url" class="form-control" id="pic" name="picurl">
   </div>

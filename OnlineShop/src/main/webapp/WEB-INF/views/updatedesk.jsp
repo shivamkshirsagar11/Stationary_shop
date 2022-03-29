@@ -45,9 +45,7 @@
     	<label for="material" class="form-label">Material</label>
     	<input type="text" class="form-control" id="material" name="color" value="${desk.material }">
   </div>
-  
 
-  
   <div class="mb-3">
     	<label for="pic" class="form-label">Picture</label>
     	<input type="text" class="form-control" id="image" name="image" value="${desk.image }">

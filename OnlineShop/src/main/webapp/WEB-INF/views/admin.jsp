@@ -19,7 +19,8 @@
 <div class="container my-5">
 <h2>Welcome to Admin Pages</h2><hr>
 <a class="btn btn-dark" href="adminproduct">Manage Store Products</a><br><br>
-<a class="btn btn-dark" href="all-customer">Get all Customers</a>
+<a class="btn btn-dark" href="all-customer">Get all Customers</a><br><br>
+<a class="btn btn-danger" href="login">Logout</a>
 </div>
 </body>
 </html>

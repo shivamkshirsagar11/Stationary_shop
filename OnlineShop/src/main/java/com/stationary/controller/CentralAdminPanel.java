@@ -94,7 +94,7 @@ public class CentralAdminPanel {
 		
 		Book book = new Book(pid, pname, pdesc, comp, price, stock, author, pages,url);
 		bookdao.insertObj(book);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	
@@ -113,7 +113,7 @@ public class CentralAdminPanel {
 		
 		Pen pen = new Pen(pid, pname, pdesc, comp, price, stock, color, url);
 		pendao.insertObj(pen);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	@RequestMapping(path = "/adddesk", method = RequestMethod.POST)
@@ -131,7 +131,7 @@ public class CentralAdminPanel {
 		
 		Desk desk = new Desk(pid, pname, pdesc, comp, price, stock, material, url);
 		deskdao.insertObj(desk);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	
@@ -150,7 +150,7 @@ public class CentralAdminPanel {
 		
 		Calc calc = new Calc(pid, pname, pdesc, comp, price, stock, type, url);
 		calcdao.insertObj(calc);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	@RequestMapping("/deletebook")
@@ -159,7 +159,7 @@ public class CentralAdminPanel {
 		int id = Integer.parseInt(pid);
 		Book b = bookdao.getOneObj(id);
 		bookdao.deleteObj(b);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	@RequestMapping("/deletepen")
@@ -168,7 +168,7 @@ public class CentralAdminPanel {
 		int id = Integer.parseInt(pid);
 		Pen p = pendao.getOneObj(id);
 		pendao.deleteObj(p);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	@RequestMapping("/deletedesk")
@@ -177,7 +177,7 @@ public class CentralAdminPanel {
 		int id = Integer.parseInt(pid);
 		Desk d = deskdao.getOneObj(id);
 		deskdao.deleteObj(d);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	@RequestMapping("/deletecalc")
@@ -186,7 +186,7 @@ public class CentralAdminPanel {
 		int id = Integer.parseInt(pid);
 		Calc c = calcdao.getOneObj(id);
 		calcdao.deleteObj(c);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "adminproduct");
 	}
 	
 	@RequestMapping("/updatebookform")
@@ -202,7 +202,7 @@ public class CentralAdminPanel {
 	public ModelAndView updateBook(@ModelAttribute("book") Book book)
 	{
 		bookdao.updateObj(book);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:adminproduct");
 	}
 	
 	@RequestMapping("/updatepenform")
@@ -218,7 +218,7 @@ public class CentralAdminPanel {
 	public ModelAndView updatePen(@ModelAttribute("pen") Pen pen)
 	{
 		pendao.updateObj(pen);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:adminproduct");
 	}
 	
 	@RequestMapping("/updatedeskform")
@@ -234,7 +234,7 @@ public class CentralAdminPanel {
 	public ModelAndView updateDesk(@ModelAttribute("desk") Desk desk)
 	{
 		deskdao.updateObj(desk);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:adminproduct");
 	}
 	
 	@RequestMapping("/updatecalcform")
@@ -250,7 +250,7 @@ public class CentralAdminPanel {
 	public ModelAndView updateCalc(@ModelAttribute("calc") Calc calc)
 	{
 		calcdao.updateObj(calc);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:adminproduct");
 	}
 	
 	@RequestMapping("/all-customer")
